@@ -1,13 +1,14 @@
 LEVEL = 3
 
-OPENCV_DIR = /Users/dbl/MyRepo/oopencv/opencv_install
+OPENCV_DIR = /Users/dbl/NewEra/NoobToy/OpencvLearn/3rdparty/opencv
 
 CXX      = c++
 CXXFLAGS = -O$(LEVEL) -g -std=c++11 -I$(OPENCV_DIR)/include/opencv4
+		   
 
 LD       = c++
-LDFLAGS  =
-LIBS     = -L$(OPENCV_DIR)/lib -lopencv_core 
+LDFLAGS  = 
+LIBS     = -L$(OPENCV_DIR)/lib -lopencv_world
 
 
 
@@ -24,7 +25,11 @@ target: $(OBJS) $(EXEC)
 
 
 
-.PHONY:  clean
+.PHONY:  clean test
+	
+test:
+	LD_LIBRARY_PATH=$(OPENCV_DIR)/lib ./$(EXEC)
+	#./$(EXEC)
 
 
 clean:
