@@ -29,7 +29,7 @@ target: $(OBJS) $(EXEC)
 
 
 test:
-	LD_LIBRARY_PATH=$(OPENCV_DIR)/lib ./$(EXEC) opencv_read_img.jpg
+	LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:$(OPENCV_DIR)/lib ./$(EXEC) opencv_read_img.jpg
 	#./$(EXEC) opencv_read_img.jpg
 
 
