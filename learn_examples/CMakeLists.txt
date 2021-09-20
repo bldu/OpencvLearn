@@ -1,10 +1,21 @@
-set(3RDPARTY ${PROJECT_SOURCE_DIR}/3rdparty)
+set(3RDPARTY ${PROJECT_SOURCE_DIR}/thirdparty)
 
 set(INCS
     ${3RDPARTY}/opencv/include/opencv4)
 
-set(LIBS
-    ${3RDPARTY}/opencv/lib)
+IF (WIN32)
+    MESSAGE(STATUS "windows")
+ELSEIF (APPLE)
+    MESSAGE(STATUS "Apple systems.")
+    set(LIBS
+            ${3RDPARTY}/opencv/lib)
+ELSEIF (UNIX)
+    MESSAGE(STATUS "UNIX-like OS's.")
+    set(LIBS
+            ${3RDPARTY}/opencv/lib64)
+ENDIF ()
+
+
 
 include_directories(${INCS})
 
