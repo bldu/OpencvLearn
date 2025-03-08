@@ -12,8 +12,7 @@ static cv::Mat img;
 static void UseMouse1(int event, int x, int y, int flags, void* param);
 
 int main(int argc, char* argv[]) {
-  std::string img_path =
-      "/Users/dbl/NewEra/NoobPractice/OpencvLearn/images/lenna.jpeg";
+  std::string img_path = argv[1];
   img = cv::imread(img_path);
   cv::imshow(WINDOW, img);
   cv::setMouseCallback(WINDOW, UseMouse1, 0);
