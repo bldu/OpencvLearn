@@ -1,5 +1,6 @@
 .vscode
 build
-thirdparty/opencv/*
+thirdparty/*
+!thirdparty/*.md
 .idea
 cmake-build*

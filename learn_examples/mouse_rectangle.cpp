@@ -6,20 +6,20 @@
 using namespace std;
 using namespace cv;
 
-Rect select;
-bool select_flag = false;
-Mat img, showImg;
+static Rect g_select;
+static bool select_flag = false;
+static Mat img, showImg;
 
-void A_on_Mouse(int event, int x, int y, int flags, void* param)  //实现画矩形框
+static void A_on_Mouse(int event, int x, int y, int flags, void* param)  //实现画矩形框
 {
   Point p1, p2;
   if (event == EVENT_LBUTTONDOWN) {
-    select.x = x;
-    select.y = y;
+    g_select.x = x;
+    g_select.y = y;
     select_flag = true;
   } else if (select_flag && event == EVENT_MOUSEMOVE) {
     img.copyTo(showImg);
-    p1 = Point(select.x, select.y);
+    p1 = Point(g_select.x, g_select.y);
     p2 = Point(x, y);
     rectangle(showImg, p1, p2, Scalar(0, 255, 0), 2);
     imshow("img", showImg);
@@ -27,20 +27,20 @@ void A_on_Mouse(int event, int x, int y, int flags, void* param)  //实现画矩
     select_flag = false;
   }
 }
-void B_on_Mouse(int event, int x, int y, int flags,
+static void B_on_Mouse(int event, int x, int y, int flags,
                 void* param)  //实现画矩形框并截图
 {
   Point p1, p2;
   switch (event) {
     case EVENT_LBUTTONDOWN: {
-      select.x = x;
-      select.y = y;
+      g_select.x = x;
+      g_select.y = y;
       select_flag = true;
     } break;
     case EVENT_MOUSEMOVE: {
       if (select_flag) {
         img.copyTo(showImg);
-        p1 = Point(select.x, select.y);
+        p1 = Point(g_select.x, g_select.y);
         p2 = Point(x, y);
         rectangle(showImg, p1, p2, Scalar(0, 255, 0), 2);
         imshow("img", showImg);
@@ -49,7 +49,7 @@ void B_on_Mouse(int event, int x, int y, int flags,
     case EVENT_LBUTTONUP: {
       //显示框出的ROI
       //改成Rect roi = Rect(p1, p2);为什么不对？
-      Rect roi = Rect(Point(select.x, select.y), Point(x, y));
+      Rect roi = Rect(Point(g_select.x, g_select.y), Point(x, y));
       if (roi.width && roi.height)  //点一下时会没有反应
       {
         Mat roiImg = img(roi);
@@ -61,12 +61,12 @@ void B_on_Mouse(int event, int x, int y, int flags,
   }
 }
 
-int main() {
-  std::string img_path =
-      "/Users/dbl/NewEra/NoobPractice/OpencvLearn/images/lenna.jpeg";
+int main(int argc, char const *argv[])
+{
+  std::string img_path = argv[1];
   img = imread(img_path, 1);
   showImg = img.clone();
-  select.x = select.y = 0;
+  g_select.x = g_select.y = 0;
   imshow("img", showImg);
 
   while (1) {

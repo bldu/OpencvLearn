@@ -15,7 +15,7 @@ ELSEIF (UNIX)
     set(OpenCV_DIR ${CMAKE_SOURCE_DIR}/thirdparty/opencv/lib/cmake/opencv4)
 ENDIF ()
 
-find_package(OpenCV 4.11.0 REQUIRED)
+find_package(OpenCV REQUIRED)
 # message(STATUS "OpenCV_LIBS:  ${OpenCV_LIBS}")
 # message(STATUS "OpenCV_INCLUDE_DIRS:  ${OpenCV_INCLUDE_DIRS}")
 
