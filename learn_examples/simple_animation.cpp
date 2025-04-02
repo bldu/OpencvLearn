@@ -4,10 +4,9 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <string>
+#include <iostream>
 
-void MakeAnimation1() {
-  std::string img_path =
-      "/Users/dbl/NewEra/NoobPractice/OpencvLearn/images/lenna.jpeg";
+void MakeAnimation1(std::string img_path) {
   cv::Mat img = cv::imread(img_path);
 
   int a = 0;
@@ -25,9 +24,7 @@ void MakeAnimation1() {
   }
 }
 
-void MakeAnimation2() {
-  std::string img_path =
-      "/Users/dbl/NewEra/NoobPractice/OpencvLearn/images/lenna.jpeg";
+void MakeAnimation2(std::string img_path) {
   cv::Mat img = cv::imread(img_path);
   cv::Mat img_ani(img.rows, img.cols, CV_8UC3);
 
@@ -47,14 +44,13 @@ void MakeAnimation2() {
   }
 }
 
-void MakeAnimation3() {
-  std::string img_path =
-      "/Users/dbl/NewEra/NoobPractice/OpencvLearn/images/lenna.jpeg";
-  cv::Mat img = cv::imread(img_path);
-}
 
 int main(int argc, char *argv[]) {
-  //  MakeAnimation1();
-  MakeAnimation2();
+  if (argc<2){
+    std::cout << "Please input image path" << std::endl;
+    return -1;
+  }
+  //  MakeAnimation1(argv[1]);
+  MakeAnimation2(argv[1]);
   return 0;
 }
