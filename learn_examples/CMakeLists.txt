@@ -21,19 +21,6 @@ foreach(source_file ${example_sources})
     # set_target_properties(${example_name} PROPERTIES
     #     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
     # )
-    if (WIN32)
-    add_custom_command(TARGET ${example_name} POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:${example_name}> $<TARGET_FILE_DIR:${example_name}>
-    COMMAND_EXPAND_LISTS
-    )
-    endif()
 
 
 endforeach()
-
-# if (WIN32)
-# file(GLOB OPENCV_DLLS "${OpenCV_DIR}/x64/vc16/bin/*.dll")
-# message(STATUS "OPENCV_DLLS: ${OPENCV_DLLS}")
-# message(STATUS "CMAKE_CURRENT_BINARY_DIR: ${CMAKE_CURRENT_BINARY_DIR}")
-# file(COPY ${OPENCV_DLLS} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-# endif()
