@@ -16,5 +16,6 @@ LD_LIBRARY_PATH=./thirdparty/opencv/lib:$LD_LIBRARY_PATH your_command
 ```
 
 ### Windows
-set `OpenCV_DIR` to the path `/path/to/opencv/build` in CMakeLists.txt.
+1. add `\path\to\opencv\build\x64\vc16\bin` to environment variable `PATH`.
+2. set `OpenCV_DIR` to the path `/path/to/opencv/build` in CMakeLists.txt. 
 
